@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\v1\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::prefix('v1')->group(function () {
+    Route::get("customer",[CustomerController::class,'index']);
+    Route::post("customer",[CustomerController::class,'store']);
+    Route::put("customer/{id}",[CustomerController::class,'update']);
+    Route::delete("customer/{id}",[CustomerController::class,'delete']);
+});
 
-Route::get("customer",[CustomerController::class,'index']);
-Route::post("store",[CustomerController::class,'store']);
-Route::put("update/{id}",[CustomerController::class,'update']);
-Route::delete("delete/{id}",[CustomerController::class,'delete']);
