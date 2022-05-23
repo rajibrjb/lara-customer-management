@@ -8,23 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
+    public $timestamps = true;
     protected $table = 'customers';
 
     protected $fillable = [
-        'id','first_name',
+        'id',
+        'first_name',
         'last_name',
         'date_of_birth',
         'title',
         'state',
         'phone',
         'email'
-        
+
     ];
 
 
-    public function customer_general_info(): HasOne
+    public function customer_general_info()
     {
-        return $this->hasOne(CustomerGeneralInfo::class);
+        return $this->hasOne(CustomerGeneralInfo::class, 'customer_id', 'id');
     }
 }

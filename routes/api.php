@@ -21,9 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('v1')->group(function () {
-    Route::get("customer",[CustomerController::class,'index']);
-    Route::post("customer",[CustomerController::class,'store']);
-    Route::put("customer/{id}",[CustomerController::class,'update']);
-    Route::delete("customer/{id}",[CustomerController::class,'delete']);
+    Route::apiResource('customers',CustomerController::class);
 });
 

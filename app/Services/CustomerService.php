@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Customer;
-use App\Repositories\CustomerRepository;
+use App\Models\CustomerGeneralInfo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,19 +12,10 @@ use InvalidArgumentException;
 
 class CustomerService
 {
-    /**
-     * @var $customerRepository
-     */
-    protected $customerRepository;
 
-    /**
-     * CustomerService constructor.
-     *
-     * @param CustomerRepository $customerRepository
-     */
-    public function __construct(CustomerRepository $customerRepository)
+    public function __construct()
     {
-        $this->customerRepository = $customerRepository;
+
     }
 
     /**
@@ -60,7 +51,7 @@ class CustomerService
      */
     public function getAll()
     {
-        return $this->customerRepository->getAll();
+        return Customer::all();
     }
 
     /**
@@ -71,7 +62,7 @@ class CustomerService
      */
     public function getById($id)
     {
-        return $this->customerRepository->getById($id);
+        return Customer::find($id);
     }
 
     /**
@@ -81,7 +72,7 @@ class CustomerService
      * @param array $data
      * @return String
      */
-    public function updateCustomer($data, $id)
+    public function update($data, $id)
     {
         $validator = Validator::make($data, [
             'title' => 'bail|min:2',
@@ -95,7 +86,13 @@ class CustomerService
         DB::beginTransaction();
 
         try {
-            $customer = $this->customerRepository->update($data, $id);
+            $customer = Customer::find($id);
+
+            $customer->update($data);
+            $genInfo = [
+                'ABN' => $data['ABN'],
+            ];
+           $asda =  $customer->customer_general_info()->update($genInfo);
 
         } catch (Exception $e) {
             DB::rollBack();
@@ -117,20 +114,13 @@ class CustomerService
      * @param array $data
      * @return String
      */
-    public function saveCustomerData($data)
+    public function save($payload)
     {
-        $validator = Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required'
-        ]);
 
-        if ($validator->fails()) {
-            throw new InvalidArgumentException($validator->errors()->first());
-        }
 
-        $result = $this->customerRepository->save($data);
-
-        return $result;
+        $customer = Customer::Create($payload);
+        $customerGeneralInfo =$customer->customer_general_info()->Create($payload);
+        return;
     }
 
 }

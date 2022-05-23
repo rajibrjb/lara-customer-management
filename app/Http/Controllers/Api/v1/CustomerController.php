@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Services\CustomerService;
 use Exception;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
 use Validator;
 
 class CustomerController extends BaseController
@@ -62,10 +63,18 @@ class CustomerController extends BaseController
                 'city',
                 'email',
                 ];
+                $rules = [
+                    'first_name' => 'required',
+                ];
+                $validator = Validator::make(request()->all(), $rules);
 
-            $customer = Customer::create(request()->all());
+                if ($validator->fails()) {
+                    // Validation error..
+                    return parent::sendError($validator->getMessageBag()->toArray(), "", 400);
+                }
+            $customer = $this->customerService->save(request()->all());
 
-            return parent::sendResponse(new CustomerResource($customer, $fields), "Customer has been created successfully");
+            return parent::sendResponse($customer, "Customer has been created successfully");
         } catch (Exception $e) {
             return parent::sendError($e);
         }
@@ -124,7 +133,7 @@ class CustomerController extends BaseController
                 'email',
                 ];
 
-            $customer->update(request()->all());
+               $customerData = $this->customerService->update(request()->all(),$customer->id);
 
             return parent::sendResponse(new CustomerResource($customer, $fields), "Customer has been updated successfully");
     }
