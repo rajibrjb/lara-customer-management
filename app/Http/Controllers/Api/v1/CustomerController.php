@@ -65,6 +65,54 @@ class CustomerController extends BaseController
                 ];
                 $rules = [
                     'first_name' => 'required',
+                    'last_name' => 'required',
+                    'full_name' => 'required',
+                    'gender' => 'required',
+                    'street' => 'required',
+                    'city' => 'required',
+                    'email' => 'required',
+
+
+
+                    // 'abn' =>'required',
+                    // 'tfn' =>'required',
+                    // 'bsb' =>'required',
+                    // 'account_no' =>'required',
+                    // 'spouse_name' =>'required',
+                    // 'spouse_date_of_birth' =>'required',
+                    // 'no_of_dependants' =>'required',
+                    // 'spouse_income' =>'required',
+                    // 'have_log_book'=>'required',
+                    // 'model' => 'required',
+                    // 'rego' => 'required',
+                    // 'kms' => 'required',
+                    // 'work_related_travel_expense' =>'required', 
+                    // 'work_related_travel_expense_amount' => 'required',
+                    // 'uniform' =>'required', 
+                    // 'shoes' => 'required',
+                    // 'laundry' => 'required',
+                    // 'work_related_self_education_expense' => 'required',
+                    // 'work_related_self_education_expense_amount' =>'required',
+                    // 'mobile_phone_business' =>'required',
+                    // 'mobile_phone_amount' =>'required', 
+                    // 'internet_business' =>'required',
+                    // 'internet_amount' =>'required',
+                    // 'computer_expense_business' =>'required',
+                    // 'computer_expense_amount' =>'required',
+                    // 'seminar_printing_books_business' =>'required',
+                    // 'seminar_printing_books_amount' =>'required',
+                    // 'tools_business' =>'required', 
+                    // 'tools_amount' =>'required', 
+                    // 'license_business' =>'required',
+                    // 'license_amount' =>'required',
+                    // 'union_fees_business' =>'required',
+                    // 'union_fees_amount' =>'required', 
+                    // 'overtime_business' =>'required',
+                    // 'overtime_amount' =>'required', 
+                    // 'others' =>'required',
+                    // 'others_business' => 'required',
+                    // 'others_amount' =>'required'
+                    
                 ];
                 $validator = Validator::make(request()->all(), $rules);
 
@@ -100,7 +148,8 @@ class CustomerController extends BaseController
                 ];
 
             return parent::sendResponse(new CustomerResource($customer,$fields));
-        } catch (Exception $e) {
+        } 
+        catch (Exception $e) {
             return parent::sendError($e);
         }
     }
@@ -114,7 +163,56 @@ class CustomerController extends BaseController
      */
     public function update(Request $request, Customer $customer)
     {
-        $rules = [];
+        $rules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'full_name' => 'required',
+            'gender' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'email' => 'required',
+
+
+             // 'abn' =>'required',
+                    // 'tfn' =>'required',
+                    // 'bsb' =>'required',
+                    // 'account_no' =>'required',
+                    // 'spouse_name' =>'required',
+                    // 'spouse_date_of_birth' =>'required',
+                    // 'no_of_dependants' =>'required',
+                    // 'spouse_income' =>'required',
+                    // 'have_log_book'=>'required',
+                    // 'model' => 'required',
+                    // 'rego' => 'required',
+                    // 'kms' => 'required',
+                    // 'work_related_travel_expense' =>'required', 
+                    // 'work_related_travel_expense_amount' => 'required',
+                    // 'uniform' =>'required', 
+                    // 'shoes' => 'required',
+                    // 'laundry' => 'required',
+                    // 'work_related_self_education_expense' => 'required',
+                    // 'work_related_self_education_expense_amount' =>'required',
+                    // 'mobile_phone_business' =>'required',
+                    // 'mobile_phone_amount' =>'required', 
+                    // 'internet_business' =>'required',
+                    // 'internet_amount' =>'required',
+                    // 'computer_expense_business' =>'required',
+                    // 'computer_expense_amount' =>'required',
+                    // 'seminar_printing_books_business' =>'required',
+                    // 'seminar_printing_books_amount' =>'required',
+                    // 'tools_business' =>'required', 
+                    // 'tools_amount' =>'required', 
+                    // 'license_business' =>'required',
+                    // 'license_amount' =>'required',
+                    // 'union_fees_business' =>'required',
+                    // 'union_fees_amount' =>'required', 
+                    // 'overtime_business' =>'required',
+                    // 'overtime_amount' =>'required', 
+                    // 'others' =>'required',
+                    // 'others_business' => 'required',
+                    // 'others_amount' =>'required'
+
+        ];
 
             $validator = Validator::make(request()->all(), $rules);
 

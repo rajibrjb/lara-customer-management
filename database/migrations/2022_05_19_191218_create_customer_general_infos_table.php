@@ -22,9 +22,9 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade')->nullable();
 
-            $table->string('TFN')->nullable();
-            $table->string('ABN')->nullable();
-            $table->string('BSB')->nullable();
+            $table->string('tfn')->nullable();
+            $table->string('abn')->nullable();
+            $table->string('bsb')->nullable();
 
             $table->bigInteger('account_no')->nullable();
             $table->string('spouse_name')->nullable();
