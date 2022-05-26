@@ -18,10 +18,9 @@ class Customer extends Model
         'last_name',
         'date_of_birth',
         'title',
-        'state',
+        'address',
         'phone',
         'email'
-
     ];
 
 

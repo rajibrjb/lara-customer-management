@@ -11,8 +11,13 @@ class CustomerGeneralInfo extends Model
     public $timestamps = false;
     protected $table = 'customer_general_infos';
 
+    protected $casts = [
+        'data' => 'array'
+    ];
+
     protected $fillable = [
             'customer_id',
+            'data',
             'TFN',
             'ABN',
             'BSB',

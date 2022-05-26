@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('tfn')->nullable();
             $table->string('abn')->nullable();
             $table->string('bsb')->nullable();
-
+            $table->json('data');
             $table->bigInteger('account_no')->nullable();
             $table->string('spouse_name')->nullable();
             $table->date('spouse_date_of_birth')->nullable();
