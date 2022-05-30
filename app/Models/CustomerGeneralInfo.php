@@ -18,9 +18,9 @@ class CustomerGeneralInfo extends Model
     protected $fillable = [
             'customer_id',
             'data',
-            'TFN',
-            'ABN',
-            'BSB',
+            'tfn',
+            'abn',
+            'bsb',
             'account_no',
             'spouse_name',
             'spouse_date_of_birth',

@@ -102,10 +102,10 @@ class CustomerService
             {
                 $genInfo['account_no'] = $data['account_no'];
             }
-            if(isset($data['data']))
-            {
-                $genInfo['data'] = $data['data'];
-            }
+            // if(isset($data['data']))
+            // {
+            //     $genInfo['data'] = $data['data'];
+            // }
             // $genInfo = [
             //     // 'abn' => $data['abn'],
             //     // 'tfn' => $data['tfn'],
