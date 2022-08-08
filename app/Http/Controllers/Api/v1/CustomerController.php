@@ -68,8 +68,6 @@ class CustomerController extends BaseController
                     'first_name' => 'required',
                     'last_name' => 'required',
                     'gender' => 'required',
-                    'street' => 'required',
-                    'city' => 'required',
                     'email' => 'required',
 
 
